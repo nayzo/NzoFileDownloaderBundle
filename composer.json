@@ -1,0 +1,22 @@
+{
+    "name": "nzo/file-downloader-bundle",
+    "type": "symfony-bundle",
+    "description": "The NzoFileDownloaderBundle is a Symfony2 Bundle used to Download all types of files from your server safely and with ease.",
+    "keywords": ["download", "upload", "file"],
+    "homepage": "https://github.com/NAYZO/NzoFileDownloaderBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ala Eddine Khefifi",
+            "email": "alakhefifi@gmail.com",
+            "homepage": "http://www.alakhefifi.com"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "~2.1",
+    },
+    "autoload": {
+        "psr-0": { "Nzo\\FileDownloaderBundle": "" }
+    },
+    "target-dir": "Nzo/NzoFileDownloaderBundle"
+}
