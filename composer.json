@@ -2,7 +2,7 @@
     "name": "nzo/file-downloader-bundle",
     "type": "symfony-bundle",
     "description": "The NzoFileDownloaderBundle is a Symfony2 Bundle used to Download all types of files from your server safely and with ease.",
-    "keywords": ["download", "upload", "file"],
+    "keywords": ["download", "upload", "file", "symfony", "bundle", "downloader"],
     "homepage": "https://github.com/NAYZO/NzoFileDownloaderBundle",
     "license": "MIT",
     "authors": [
