@@ -1,17 +1,23 @@
 <?php
 
+/*
+ * Configuration file.
+ *
+ * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Nzo\FileDownloaderBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * FileDownloader.
- *
- * @author Ala Eddine Khefifi <alakhefifi@gmail.com>
- * Website   www.alakhefifi.com
+ * Class Configuration
+ * @package Nzo\FileDownloaderBundle\DependencyInjection
  */
-
 class Configuration implements ConfigurationInterface
 {
     /**
