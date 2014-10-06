@@ -3,12 +3,11 @@ NzoFileDownloaderBundle
 
 [![Build Status](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle)
 
-
-The **NzoFileDownloaderBundle** is a Symfony2 Bundle used to ``Download`` all types of files from your server or your Web application project safely and with ease.
+The **NzoFileDownloaderBundle** is a Symfony2 Bundle used to ``Download`` all types of files from your ``server`` or your ``Web application project`` safely and with ease.
 
 Features include:
 
-- Download all types of files from the 'web' folder
+- Download all types of files from the ``web`` folder
 - Change name of the file when downloading
 
 
@@ -47,14 +46,14 @@ public function registerBundles()
 Usage
 -----
 
-In the controller use the FileDownloader service and specify the options needed:
+In the controller use the ``FileDownloader`` service and specify the options needed:
 
 - The path to the file must start from the ``Web`` folder.
 
 ```php
      public function downloadAction(){
 
-        // specify the path to the file from the "web" folder.
+        // specify the path to the file from the "Web" folder.
         // in this example the "myfile.txt" file exist in "web/myfolder/myfile.txt"
               return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
 
