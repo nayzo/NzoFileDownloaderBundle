@@ -49,13 +49,13 @@ Usage
 
 In the controller use the FileDownloader service and specify the options needed:
 
-- The path to the file must start from the 'web' folder.
+- The path to the file must start from the ``Web`` folder.
 
 ```php
      public function downloadAction(){
 
-        // specify the path to the file from the 'web' folder.
-        // in this example the 'myfile.txt' file exist in 'web/myfolder/myfile.txt'
+        // specify the path to the file from the "web" folder.
+        // in this example the "myfile.txt" file exist in "web/myfolder/myfile.txt"
               return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
 
         // OR change the name of the file when downloading
