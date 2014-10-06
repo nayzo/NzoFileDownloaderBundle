@@ -3,11 +3,11 @@ NzoFileDownloaderBundle
 
 [![Build Status](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle)
 
-The **NzoFileDownloaderBundle** is a Symfony2 Bundle used to ``Download`` all types of files from your ``server`` or your ``Web application project`` safely and with ease.
+The **NzoFileDownloaderBundle** is a Symfony2 Bundle used to ``Download`` all types of ``files`` from your ``server`` or your ``Web application project`` safely and with ease.
 
 Features include:
 
-- Download all types of files from the ``web`` folder
+- ``Download`` all types of ``files`` from the ``web`` folder
 - Change name of the file when downloading
 
 
