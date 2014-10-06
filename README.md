@@ -55,6 +55,7 @@ In the controller use the ``FileDownloader`` service and specify the options nee
 
         // specify the path to the file from the "Web" folder.
         // in this example the "myfile.txt" file exist in "web/myfolder/myfile.txt"
+
               return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
 
         // OR change the name of the file when downloading
