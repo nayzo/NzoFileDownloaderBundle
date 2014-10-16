@@ -53,8 +53,10 @@ In the controller use the ``FileDownloader`` service and specify the options nee
 ```php
      public function downloadAction(){
 
-        // specify the path to the file from the "Web" folder.
-        // in this example the "myfile.txt" file exist in "web/myfolder/myfile.txt"
+        /*
+         specify the path to the file from the "Web" folder.
+         in this example the "myfile.txt" file exist in "web/myfolder/myfile.txt"
+        */
 
               return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
 
