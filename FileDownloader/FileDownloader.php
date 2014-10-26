@@ -41,8 +41,10 @@ class FileDownloader
                 $this->fileName = $newName;
             else
                 return false;
-        } else
+        } else {
             $this->fileName = substr($this->path, strrpos($this->path, '/') + 1, strlen($this->path));
+        }
+
 
         $response = new Response();
 
