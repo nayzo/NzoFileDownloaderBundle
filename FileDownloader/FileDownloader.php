@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class FileDownloader
 {
     const PATH_DIR = '/../web/';
+
     private $path;
     private $fileName;
 
@@ -33,6 +34,7 @@ class FileDownloader
         $this->path = $this->path . $path;
         if (!file_get_contents($this->path))
             return false;
+
         if (substr($this->path, -1) === '/' || substr($this->path, -1) === '#')
             $this->path = substr($this->path, 0, -1);
 
@@ -41,6 +43,7 @@ class FileDownloader
                 $this->fileName = $newName;
             else
                 return false;
+
         } else {
             $this->fileName = substr($this->path, strrpos($this->path, '/') + 1, strlen($this->path));
         }
