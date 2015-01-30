@@ -20,7 +20,7 @@ Add the following lines in your `composer.json` file:
 
 ``` js
 "require": {
-    "nzo/file-downloader-bundle": "dev-master"
+    "nzo/file-downloader-bundle": "~1.0"
 }
 ```
 Install the bundle:
