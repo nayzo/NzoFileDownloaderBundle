@@ -1,7 +1,0 @@
-parameters:
-    nzo_file_downloader.class: Nzo\FileDownloaderBundle\FileDownloader\FileDownloader
-
-services:
-    nzo_file_downloader:
-        class: %nzo_file_downloader.class%
-        arguments: [%kernel.root_dir%]
