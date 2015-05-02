@@ -51,8 +51,8 @@ In the controller use the ``FileDownloader`` service and specify the options nee
 - The path to the file must start from the ``Web`` folder.
 
 ```php
-     public function downloadAction(){
-
+     public function downloadAction()
+     {
         /*
          specify the path to the file from the "Web" folder.
          in this example the "myfile.txt" file exist in "web/myfolder/myfile.txt"
