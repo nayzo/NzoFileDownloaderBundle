@@ -29,7 +29,7 @@ class FileDownloader
         $this->path = $rootDir . self::PATH_DIR;
     }
 
-    public function downloadFile($path, $newName = null)
+    public function downloadFile($path, $newName = null, $forceDownload = false)
     {
         $this->path = $this->path . $path;
         if (!file_get_contents($this->path)) {
@@ -54,6 +54,9 @@ class FileDownloader
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', mime_content_type($this->path));
         $response->headers->set('Content-Disposition', 'attachment;filename="' . $this->fileName . '"');
+        if ($forceDownload) {
+            $response->headers->set('Content-Type', 'application/force-download');
+        }
         $response->setContent(file_get_contents($this->path));
 
         return $response;
