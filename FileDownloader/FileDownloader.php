@@ -52,10 +52,13 @@ class FileDownloader
 
         $response = new Response();
         $response->setStatusCode(200);
-        $response->headers->set('Content-Type', mime_content_type($this->path));
-        $response->headers->set('Content-Disposition', 'attachment;filename="' . $this->fileName . '"');
+
         if ($forceDownload) {
             $response->headers->set('Content-Type', 'application/force-download');
+            $response->headers->set('Content-Disposition', 'attachment;filename="' . $this->fileName . '"');
+        } else {
+            $response->headers->set('Content-Type', mime_content_type($this->path));
+            $response->headers->set('Content-Disposition', 'inline;filename="' . $this->fileName . '"');
         }
         $response->setContent(file_get_contents($this->path));
 
