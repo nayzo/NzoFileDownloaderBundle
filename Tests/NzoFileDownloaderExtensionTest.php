@@ -1,5 +1,7 @@
 <?php
 
+namespace Nzo\FileDownloaderBundle\Tests;
+
 /*
  * This file is part of the NzoFileDownloaderBundle package.
  *
@@ -15,5 +17,4 @@ class NzoFileDownloaderExtensionTest extends \PHPUnit_Framework_TestCase
     {
 
     }
-
 }

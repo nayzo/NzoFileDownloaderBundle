@@ -5,11 +5,13 @@ NzoFileDownloaderBundle
 [![Latest Stable Version](https://poser.pugx.org/nzo/file-downloader-bundle/v/stable)](https://packagist.org/packages/nzo/file-downloader-bundle)
 
 The **NzoFileDownloaderBundle** is a Symfony2 Bundle used to ``Download`` all types of ``files`` from ``servers`` and ``Web application projects`` safely and with ease.
+You can also ``read/show`` the file content in the Web Browser.
 
 Features include:
 
-- ``Download`` all types of ``files`` from the ``web`` folder
-- Change name of the file when downloading
+- ``Read/Show`` the file content in the Web **Browser**.
+- ``Download`` all types of ``files`` from the Symfony ``web`` folder.
+- Change the name of the file when downloading.
 
 
 Installation
@@ -21,7 +23,7 @@ Add the following lines in your `composer.json` file:
 
 ``` js
 "require": {
-    "nzo/file-downloader-bundle": "~1.0"
+    "nzo/file-downloader-bundle": "~2.0"
 }
 ```
 Install the bundle:
@@ -47,25 +49,26 @@ public function registerBundles()
 Usage
 -----
 
-In the controller use the ``FileDownloader`` service and specify the options needed:
+In the controller use the ``FileDownloader`` Service and specify the function you want to use:
 
-- The path to the file must start from the ``Web`` folder.
+The path to the file must start from the Symfony ``Web`` folder.
 
 ```php
+    // In this examples the "myfile.txt" file exist in "web/myfolder/myfile.txt".
+
      public function downloadAction()
      {
+        # Read / Show the file content in the Web Browser:
 
-        // In this example the "myfile.txt" file exist in "web/myfolder/myfile.txt":
-            return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
+          return $this->get('nzo_file_downloader')->readFile('myfolder/myfile.txt');
 
-        // OR change the name of the file when downloading:
-            return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt', 'newName.txt');
+        # Force file download:
 
-        // You can Force download (it's appreciated if you want to force download PDF file and prevent the web browser from reading it):
-            return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt', null, true);
+          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
 
-            // OR by changing the name:
-                return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.pdf', 'file.pdf', true);
+        # change the name of the file when downloading:
+
+          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt', 'newName.txt');
      }
 ```
 

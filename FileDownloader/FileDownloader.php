@@ -22,46 +22,76 @@ class FileDownloader
     const PATH_DIR = '/../web/';
 
     private $path;
-    private $fileName;
 
     public function __controler($rootDir)
     {
         $this->path = $rootDir . self::PATH_DIR;
     }
 
-    public function downloadFile($path, $newName = null, $forceDownload = false)
+    /**
+     * @param string $path
+     * @return Response
+     */
+    public function readFile($path)
     {
-        $this->path = $this->path . $path;
-        if (!file_get_contents($this->path)) {
-            return;
-        }
+        $path = $this->getPath($path);
 
-        if (substr($this->path, -1) === '/' || substr($this->path, -1) === '#') {
-            $this->path = substr($this->path, 0, -1);
-        }
+        $fileName = substr($path, strrpos($path, '/') + 1, strlen($path));
+
+        $response = new Response();
+        $response->setStatusCode(200);
+        $response->headers->set('Content-Type', mime_content_type($path));
+        $response->headers->set('Content-Disposition', 'inline;filename="' . $fileName . '"');
+        $response->setContent(file_get_contents($path));
+
+        return $response;
+    }
+
+    /**
+     * @param string $path
+     * @param string|null $newName
+     * @return Response
+     * @throws \Exception
+     */
+    public function downloadFile($path, $newName = null)
+    {
+        $path = $this->getPath($path);
 
         if (null === $newName) {
-            $this->fileName = substr($this->path, strrpos($this->path, '/') + 1, strlen($this->path));
+            $fileName = substr($path, strrpos($path, '/') + 1, strlen($path));
         } else {
             if (preg_match('/[^"]+\.[a-z|0-9]+$/i', $newName)) {
-                $this->fileName = $newName;
+                $fileName = $newName;
             } else {
-                return;
+                throw new \Exception(sprintf('Not valid File name: %s', $newName));
             }
         }
 
         $response = new Response();
         $response->setStatusCode(200);
-
-        if ($forceDownload) {
-            $response->headers->set('Content-Type', 'application/force-download');
-            $response->headers->set('Content-Disposition', 'attachment;filename="' . $this->fileName . '"');
-        } else {
-            $response->headers->set('Content-Type', mime_content_type($this->path));
-            $response->headers->set('Content-Disposition', 'inline;filename="' . $this->fileName . '"');
-        }
-        $response->setContent(file_get_contents($this->path));
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-Disposition', 'attachment;filename="' . $fileName . '"');
+        $response->setContent(file_get_contents($path));
 
         return $response;
+    }
+
+    /**
+     * @param string $path
+     * @return string
+     * @throws \Exception
+     */
+    private function getPath($path)
+    {
+        $path = $this->path . $path;
+        if (!file_get_contents($path)) {
+            throw new \Exception(sprintf('File could not be loaded in: %s', $path));
+        }
+
+        if (substr($path, -1) === '/' || substr($path, -1) === '#') {
+            $path = substr($path, 0, -1);
+        }
+
+        return $path;
     }
 }
