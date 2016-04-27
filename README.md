@@ -4,7 +4,7 @@ NzoFileDownloaderBundle
 [![Build Status](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle)
 [![Latest Stable Version](https://poser.pugx.org/nzo/file-downloader-bundle/v/stable)](https://packagist.org/packages/nzo/file-downloader-bundle)
 
-The **NzoFileDownloaderBundle** is a Symfony2 Bundle used to ``Download`` all types of ``files`` from ``servers`` and ``Web application projects`` safely and with ease.
+The **NzoFileDownloaderBundle** is a Symfony2/3 Bundle used to ``Download`` all types of ``files`` from ``servers`` and ``Web application projects`` safely and with ease.
 You can also ``read/show`` the file content in the Web Browser.
 
 Features include:
