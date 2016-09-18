@@ -54,21 +54,21 @@ In the controller use the ``FileDownloader`` Service and specify the function yo
 The path to the file must start from the Symfony ``Web`` folder.
 
 ```php
-    // In this examples the "myfile.txt" file exist in "web/myfolder/myfile.txt".
+    // In this examples the "myfile.pdf" file exist in "web/myfolder/myfile.pdf".
 
      public function downloadAction()
      {
         # Read / Show the file content in the Web Browser:
 
-          return $this->get('nzo_file_downloader')->readFile('myfolder/myfile.txt');
+          return $this->get('nzo_file_downloader')->readFile('myfolder/myfile.pdf');
 
         # Force file download:
 
-          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt');
+          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.pdf');
 
         # change the name of the file when downloading:
 
-          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.txt', 'newName.txt');
+          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.pdf', 'newName.pdf');
      }
 ```
 
