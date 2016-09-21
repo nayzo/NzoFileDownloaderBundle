@@ -23,18 +23,19 @@ class FileDownloader
 
     private $path;
 
-    public function __controler($rootDir)
+    public function __construct($rootDir)
     {
         $this->path = $rootDir . self::PATH_DIR;
     }
 
     /**
      * @param string $path
+     * @param bool $absolutePath
      * @return Response
      */
-    public function readFile($path)
+    public function readFile($path, $absolutePath = false)
     {
-        $path = $this->getPath($path);
+        $path = $this->getPath($path, $absolutePath);
 
         $fileName = substr($path, strrpos($path, '/') + 1, strlen($path));
 
@@ -49,15 +50,20 @@ class FileDownloader
 
     /**
      * @param string $path
-     * @param string|null $newName
+     * @param string|null|bool $newName
+     * @param bool $absolutePath
      * @return Response
      * @throws \Exception
      */
-    public function downloadFile($path, $newName = null)
+    public function downloadFile($path, $newName = null, $absolutePath = false)
     {
-        $path = $this->getPath($path);
+        if ((is_bool($newName) && true === $newName)) {
+            $path = $this->getPath($path, $newName);
+        } else {
+            $path = $this->getPath($path, $absolutePath);
+        }
 
-        if (null === $newName) {
+        if ((null === $newName) || (is_bool($newName) && true === $newName)) {
             $fileName = substr($path, strrpos($path, '/') + 1, strlen($path));
         } else {
             if (preg_match('/[^"]+\.[a-z|0-9]+$/i', $newName)) {
@@ -78,12 +84,14 @@ class FileDownloader
 
     /**
      * @param string $path
+     * @param bool $absolutePath
      * @return string
      * @throws \Exception
      */
-    private function getPath($path)
+    private function getPath($path, $absolutePath)
     {
-        $path = $this->path . $path;
+        $path = $absolutePath ? $path : $this->path . $path;
+
         if (!file_get_contents($path)) {
             throw new \Exception(sprintf('File could not be loaded in: %s', $path));
         }
