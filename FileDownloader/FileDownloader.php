@@ -12,6 +12,7 @@
 namespace Nzo\FileDownloaderBundle\FileDownloader;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class FileDownloader
@@ -40,7 +41,7 @@ class FileDownloader
         $fileName = substr($path, strrpos($path, '/') + 1, strlen($path));
 
         $response = new Response();
-        $response->setStatusCode(200);
+        $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', mime_content_type($path));
         $response->headers->set('Content-Disposition', 'inline;filename="' . $fileName . '"');
         $response->setContent(file_get_contents($path));
@@ -74,12 +75,30 @@ class FileDownloader
         }
 
         $response = new Response();
-        $response->setStatusCode(200);
+        $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/force-download');
         $response->headers->set('Content-Disposition', 'attachment;filename="' . $fileName . '"');
         $response->setContent(file_get_contents($path));
 
         return $response;
+    }
+
+    /**
+     * @param StreamedResponse $streamedResponse
+     * @param string $fileName
+     * @return StreamedResponse
+     * @throws \Exception
+     */
+    public function downloadStreamedResponse(StreamedResponse $streamedResponse, $fileName)
+    {
+        if (empty($fileName)) {
+            throw new \Exception(sprintf('Not valid File name: %s', $fileName));
+        }
+        $streamedResponse->setStatusCode(Response::HTTP_OK);
+        $streamedResponse->headers->set('Content-Type', 'application/force-download');
+        $streamedResponse->headers->set('Content-Disposition', 'attachment;filename="' . $fileName . '"');
+
+        return $streamedResponse;
     }
 
     /**

@@ -53,7 +53,7 @@ In the controller use the ``FileDownloader`` Service and specify the function yo
 
 By default the path to the file start from the Symfony ``Web`` folder, but you can specify the path as absolute by adding **true** to the second or the third parameter.
 
-```php
+``` php
     // In this examples the "myfile.pdf" file exist in "web/myfolder/myfile.pdf".
 
      public function downloadAction()
@@ -88,6 +88,26 @@ By default the path to the file start from the Symfony ``Web`` folder, but you c
 
            return $this->get('nzo_file_downloader')->downloadFile('/home/profile/myfile.pdf', 'newName.pdf', true);  // true: for Absolute PATH
       }
+
+```
+
+- Download a Symfony **StreamedResponse**:
+
+``` php
+
+    use Symfony\Component\HttpFoundation\StreamedResponse;
+
+    // ...
+
+    public function someFunctionAction()
+    {
+        $streamedResponse = new StreamedResponse();
+        // ...
+
+        $fileName = 'someFileName.csv';
+
+        return $this->get('nzo_file_downloader')->downloadStreamedResponse($streamedResponse, $fileName);
+    }
 
 ```
 
