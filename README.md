@@ -2,6 +2,7 @@ NzoFileDownloaderBundle
 =====================
 
 [![Build Status](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle)
+[![Total Downloads](https://poser.pugx.org/nzo/file-downloader-bundle/downloads)](https://packagist.org/packages/nzo/file-downloader-bundle)
 [![Latest Stable Version](https://poser.pugx.org/nzo/file-downloader-bundle/v/stable)](https://packagist.org/packages/nzo/file-downloader-bundle)
 
 The **NzoFileDownloaderBundle** is a Symfony Bundle used to ``Download`` all types of ``files`` from ``servers`` and ``Web application projects`` safely and with ease.
@@ -19,17 +20,8 @@ Installation
 
 ### Through Composer:
 
-Add the following lines in your `composer.json` file:
-
-``` js
-"require": {
-    "nzo/file-downloader-bundle": "~2.0"
-}
-```
-Install the bundle:
-
-```
-$ composer update
+``` bash
+$ composer require nzo/file-downloader-bundle
 ```
 
 ### Register the bundle in app/AppKernel.php:
