@@ -16,6 +16,5 @@
     },
     "autoload": {
         "psr-4": { "Nzo\\FileDownloaderBundle\\": "" }
-    },
-    "target-dir": "Nzo/FileDownloaderBundle"
+    }
 }
