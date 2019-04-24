@@ -1,0 +1,8 @@
+services:
+
+    Nzo\FileDownloaderBundle\FileDownloader\FileDownloader: '@nzo_file_downloader'
+
+    nzo_file_downloader:
+        class: Nzo\FileDownloaderBundle\FileDownloader\FileDownloader
+        arguments:
+            - '%kernel.root_dir%'

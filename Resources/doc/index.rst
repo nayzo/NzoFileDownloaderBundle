@@ -1,7 +1,7 @@
 NzoFileDownloaderBundle
 =====================
 
-[![Build Status](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/NAYZO/NzoFileDownloaderBundle)
+[![Build Status](https://travis-ci.org/nayzo/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/nayzo/NzoFileDownloaderBundle)
 [![Total Downloads](https://poser.pugx.org/nzo/file-downloader-bundle/downloads)](https://packagist.org/packages/nzo/file-downloader-bundle)
 [![Latest Stable Version](https://poser.pugx.org/nzo/file-downloader-bundle/v/stable)](https://packagist.org/packages/nzo/file-downloader-bundle)
 
@@ -88,4 +88,4 @@ License
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-See [Resources/doc/LICENSE](https://github.com/NAYZO/NzoFileDownloaderBundle/blob/master/Resources/doc/LICENSE)
+See [Resources/doc/LICENSE](https://github.com/nayzo/NzoFileDownloaderBundle/blob/master/Resources/doc/LICENSE)
