@@ -26,7 +26,7 @@ class FileDownloader
 
     public function __construct($rootDir)
     {
-        $this->path = $rootDir . self::PATH_DIR;
+        $this->path = $rootDir.self::PATH_DIR;
     }
 
     /**
@@ -43,7 +43,7 @@ class FileDownloader
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', mime_content_type($path));
-        $response->headers->set('Content-Disposition', 'inline;filename="' . $fileName . '"');
+        $response->headers->set('Content-Disposition', 'inline;filename="'.$fileName.'"');
         $response->setContent(file_get_contents($path));
 
         return $response;
@@ -77,7 +77,7 @@ class FileDownloader
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/force-download');
-        $response->headers->set('Content-Disposition', 'attachment;filename="' . $fileName . '"');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$fileName.'"');
         $response->setContent(file_get_contents($path));
 
         return $response;
@@ -96,7 +96,7 @@ class FileDownloader
         }
         $streamedResponse->setStatusCode(Response::HTTP_OK);
         $streamedResponse->headers->set('Content-Type', 'application/force-download');
-        $streamedResponse->headers->set('Content-Disposition', 'attachment;filename="' . $fileName . '"');
+        $streamedResponse->headers->set('Content-Disposition', 'attachment;filename="'.$fileName.'"');
 
         return $streamedResponse;
     }
@@ -109,7 +109,7 @@ class FileDownloader
      */
     private function getPath($path, $absolutePath)
     {
-        $path = $absolutePath ? $path : $this->path . $path;
+        $path = $absolutePath ? $path : $this->path.$path;
 
         if (!file_get_contents($path)) {
             throw new \Exception(sprintf('File could not be loaded in: %s', $path));

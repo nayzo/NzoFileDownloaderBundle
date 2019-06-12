@@ -10,9 +10,11 @@ You can also ``read/show`` the file content in the Web Browser.
 
 Features include:
 
+- Compatible Symfony version 2, 3 & 4
 - ``Read/Show`` the file content in the Web **Browser**.
 - ``Download`` all types of ``files`` from the Symfony ``web`` folder.
 - Change the name of the file when downloading.
+- Compatible php version 5 & 7
 
 
 Installation
@@ -24,7 +26,7 @@ Installation
 $ composer require nzo/file-downloader-bundle
 ```
 
-### Register the bundle in app/AppKernel.php:
+### Register the bundle in app/AppKernel.php (Symfony V2 or V3):
 
 ``` php
 // app/AppKernel.php
@@ -45,22 +47,36 @@ In the controller use the ``FileDownloader`` Service and specify the function yo
 
 By default the path to the file start from the Symfony ``Web`` folder, but you can specify the path as absolute by adding **true** to the second or the third parameter.
 
-``` php
-    // In this examples the "myfile.pdf" file exist in "web/myfolder/myfile.pdf".
+
+```php
+use Nzo\FileDownloaderBundle\FileDownloader\FileDownloader;
+
+class MyController extends AbstractController
+{
+    private $fileDownloader;
+
+    public function __construct(FileDownloader $fileDownloader)
+    {
+        $this->fileDownloader = $fileDownloader;
+        
+        // without autowiring use: $this->get('nzo_file_downloader')
+    }
+
+// In this examples the "myfile.pdf" file exist in "web/myfolder/myfile.pdf".
 
      public function downloadAction()
      {
         # Read / Show the file content in the Web Browser:
 
-          return $this->get('nzo_file_downloader')->readFile('myfolder/myfile.pdf');
+          return $this->fileDownloader->readFile('myfolder/myfile.pdf');
 
         # Force file download:
 
-          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.pdf');
+          return $this->fileDownloader->downloadFile('myfolder/myfile.pdf');
 
         # change the name of the file when downloading:
 
-          return $this->get('nzo_file_downloader')->downloadFile('myfolder/myfile.pdf', 'newName.pdf');
+          return $this->fileDownloader->downloadFile('myfolder/myfile.pdf', 'newName.pdf');
      }
 
 
@@ -70,18 +86,19 @@ By default the path to the file start from the Symfony ``Web`` folder, but you c
       {
          # Read / Show the file content in the Web Browser:
 
-           return $this->get('nzo_file_downloader')->readFile('/home/profile/myfile.pdf', true);  // true: for Absolute PATH
+           return $this->fileDownloader->readFile('/home/profile/myfile.pdf', true);  // true: for Absolute PATH
 
          # Force file download:
 
-           return $this->get('nzo_file_downloader')->downloadFile('/home/profile/myfile.pdf', true);  // true: for Absolute PATH
+           return $this->fileDownloader->downloadFile('/home/profile/myfile.pdf', true);  // true: for Absolute PATH
 
          # change the name of the file when downloading:
 
-           return $this->get('nzo_file_downloader')->downloadFile('/home/profile/myfile.pdf', 'newName.pdf', true);  // true: for Absolute PATH
+           return $this->fileDownloader->downloadFile('/home/profile/myfile.pdf', 'newName.pdf', true);  // true: for Absolute PATH
       }
-
+}    
 ```
+
 
 - Download a Symfony **StreamedResponse**:
 
@@ -98,7 +115,7 @@ By default the path to the file start from the Symfony ``Web`` folder, but you c
 
         $fileName = 'someFileName.csv';
 
-        return $this->get('nzo_file_downloader')->downloadStreamedResponse($streamedResponse, $fileName);
+        return $this->fileDownloader->downloadStreamedResponse($streamedResponse, $fileName);
     }
 
 ```

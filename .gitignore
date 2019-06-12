@@ -1,8 +1,5 @@
-/web/
-/app/
-/build/
-/vendor/
-/bin/
-/composer.phar
+phpunit.xml
+composer.lock
+composer.phar
+vendor
 .idea
-/composer.lock
