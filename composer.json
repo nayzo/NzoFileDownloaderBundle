@@ -1,20 +1,38 @@
 {
-    "name": "nzo/file-downloader-bundle",
-    "type": "symfony-bundle",
-    "description": "The NzoFileDownloaderBundle is a Symfony Bundle used to Download all types of files from servers and Web applications safely and with ease. You can also read/show the file content in the Web Browser.",
-    "keywords": ["download", "upload", "file", "symfony", "bundle", "downloader", "browser", "read", "show"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ala Eddine Khefifi",
-            "email": "alakhefifi@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "symfony/framework-bundle": "^2.3|^3.0|^4.0"
-    },
-    "autoload": {
-        "psr-4": { "Nzo\\FileDownloaderBundle\\": "" }
-    }
+  "name": "nzo/file-downloader-bundle",
+  "type": "symfony-bundle",
+  "description": "The NzoFileDownloaderBundle is a Symfony Bundle used to Download all types of files from servers and Web applications safely and with ease. You can also read/show the file content in the Web Browser.",
+  "keywords": [
+	"download",
+	"upload",
+	"file",
+	"symfony",
+	"bundle",
+	"downloader",
+	"browser",
+	"read",
+	"show"
+  ],
+  "license": "MIT",
+  "authors": [
+	{
+	  "name": "Ala Eddine Khefifi",
+	  "email": "alakhefifi@gmail.com"
+	}
+  ],
+  "require": {
+	"php": ">=7.1.3",
+	"symfony/framework-bundle": "^4.4|^5.0",
+	"symfony/mime": "^4.4|^5.0"
+  },
+  "autoload": {
+	"psr-4": {
+	  "Nzo\\FileDownloaderBundle\\": ""
+	}
+  },
+  "autoload-dev": {
+	"psr-4": {
+	  "Nzo\\FileDownloaderBundle\\Tests\\": "/tests/"
+	}
+  }
 }

@@ -1,5 +1,5 @@
 NzoFileDownloaderBundle
-=====================
+=======================
 
 [![Build Status](https://travis-ci.org/nayzo/NzoFileDownloaderBundle.svg?branch=master)](https://travis-ci.org/nayzo/NzoFileDownloaderBundle)
 [![Total Downloads](https://poser.pugx.org/nzo/file-downloader-bundle/downloads)](https://packagist.org/packages/nzo/file-downloader-bundle)
@@ -10,12 +10,12 @@ You can also ``read/show`` the file content in the Web Browser.
 
 Features include:
 
-- Compatible Symfony version 2, 3 & 4
+- This version of the bundle is compatible with Symfony >= v4.4
 - ``Read/Show`` the file content in the Web **Browser**.
-- ``Download`` all types of ``files`` from the Symfony ``web`` folder.
+- ``Download`` all types of ``files`` from the Symfony ``public`` folder or from a custom path.
 - Change the name of the file when downloading.
-- Compatible php version 5 & 7
-
+- Download Files From Url
+- Get Files Extension From Url
 
 Installation
 ------------
@@ -26,27 +26,22 @@ Installation
 $ composer require nzo/file-downloader-bundle
 ```
 
-### Register the bundle in app/AppKernel.php (Symfony V2 or V3):
+#### Register the bundle in config/bundles.php (without Flex)
+
 
 ``` php
-// app/AppKernel.php
+// config/bundles.php
 
-public function registerBundles()
-{
-    return array(
-        // ...
-        new Nzo\FileDownloaderBundle\NzoFileDownloaderBundle(),
-    );
-}
+return [
+    // ...
+    Nzo\FileDownloaderBundle\NzoFileDownloaderBundle::class => ['all' => true],
+];
 ```
 
 Usage
 -----
 
-In the controller use the ``FileDownloader`` Service and specify the function you want to use:
-
-By default the path to the file start from the Symfony ``Web`` folder, but you can specify the path as absolute by adding **true** to the second or the third parameter.
-
+#### Read / Show the file content in the Web Browser:
 
 ```php
 use Nzo\FileDownloaderBundle\FileDownloader\FileDownloader;
@@ -62,16 +57,27 @@ class MyController extends AbstractController
         // without autowiring use: $this->get('nzo_file_downloader')
     }
 
-// In this examples the "myfile.pdf" file exist in "web/myfolder/myfile.pdf".
+// In this examples the "myfile.pdf" file exist in "public/myfolder/myfile.pdf".
 
-     public function downloadAction()
+     public function readFilesFromPublicFolder()
      {
-        # Read / Show the file content in the Web Browser:
-
           return $this->fileDownloader->readFile('myfolder/myfile.pdf');
+     }
 
-        # Force file download:
+     // Absolute PATH:
 
+     public function readFilesFromAbsolutePath()
+      {
+           return $this->fileDownloader->readFileFromAbsolutePath('/home/user/myfile.pdf');
+      }
+}    
+```
+
+#### Download the Files:
+
+```php
+     public function downloadFileFromPublicFolder()
+     {
           return $this->fileDownloader->downloadFile('myfolder/myfile.pdf');
 
         # change the name of the file when downloading:
@@ -82,33 +88,53 @@ class MyController extends AbstractController
 
      // Absolute PATH:
 
-     public function downloadAction()
+     public function downloadFilesFromAbsolutePath()
       {
-         # Read / Show the file content in the Web Browser:
-
-           return $this->fileDownloader->readFile('/home/profile/myfile.pdf', true);  // true: for Absolute PATH
-
-         # Force file download:
-
-           return $this->fileDownloader->downloadFile('/home/profile/myfile.pdf', true);  // true: for Absolute PATH
+           return $this->fileDownloader->downloadFileFromAbsolutePath('/home/user/myfile.pdf');
 
          # change the name of the file when downloading:
 
-           return $this->fileDownloader->downloadFile('/home/profile/myfile.pdf', 'newName.pdf', true);  // true: for Absolute PATH
+           return $this->fileDownloader->downloadFileFromAbsolutePath('/home/user/myfile.pdf', 'newName.pdf');
       }
 }    
 ```
 
+##### Download Files from **URL**:
 
-- Download a Symfony **StreamedResponse**:
+```php
+    public function downloadFileFromUrl(string $url, string $pathWhereToDownloadTheFile, ?string $customUserAgent = null)
+    {
+        $response =  $this->fileDownloader->downloadFileFromUrl($url, $pathWhereToDownloadTheFile, /** You can pass an optional custom User-Agent as third argument ($customUserAgent) */);
+    
+        if (false !== $response) {
+            // File downloaded successfully !
+        } else {
+            // Error occurred ! 
+        }   
+    }
+```
 
-``` php
+##### Get Files Extension From **URL**:
 
+```php
+public function getFileExtensionFromUrl(string $url)
+{
+    $fileExtension = $this->fileDownloader->getFileExtensionFromUrl($url);
+
+    if (null === $fileExtension) {
+        // Error occurred ! 
+    }
+}
+```
+
+##### Download a Symfony **StreamedResponse**:
+
+```php
     use Symfony\Component\HttpFoundation\StreamedResponse;
 
     // ...
 
-    public function someFunctionAction()
+    public function downloadStreamedResponse()
     {
         $streamedResponse = new StreamedResponse();
         // ...
@@ -125,4 +151,4 @@ License
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-See [Resources/doc/LICENSE](https://github.com/nayzo/NzoFileDownloaderBundle/blob/master/Resources/doc/LICENSE)
+See [Resources/doc/LICENSE](https://github.com/nayzo/NzoFileDownloaderBundle/blob/master/LICENSE)

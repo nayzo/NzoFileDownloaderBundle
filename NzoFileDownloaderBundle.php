@@ -13,10 +13,6 @@ namespace Nzo\FileDownloaderBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * Class NzoFileDownloaderBundle
- * @package Nzo\FileDownloaderBundle
- */
 class NzoFileDownloaderBundle extends Bundle
 {
 }

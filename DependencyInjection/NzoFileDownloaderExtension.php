@@ -16,10 +16,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-/**
- * Class NzoFileDownloaderExtension
- * @package Nzo\FileDownloaderBundle\DependencyInjection
- */
 class NzoFileDownloaderExtension extends Extension
 {
     /**
