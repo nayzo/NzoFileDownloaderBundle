@@ -34,5 +34,11 @@
 	"psr-4": {
 	  "Nzo\\FileDownloaderBundle\\Tests\\": "/tests/"
 	}
+  },
+  "require-dev": {
+	"phpunit/phpunit": "^4.8 || ^5.0"
+  },
+  "config": {
+	"sort-packages": true
   }
 }
