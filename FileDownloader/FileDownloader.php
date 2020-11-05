@@ -1,7 +1,7 @@
 <?php
 
-/*
- * FileDownloader file.
+/**
+ * This file is part of the NzoFileDownloaderBundle package.
  *
  * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
  *
@@ -173,7 +173,7 @@ class FileDownloader
         return $response;
     }
 
-    private function getPath(string $path, bool $absolutePath)
+    private function getPath(string $path, bool $absolutePath): string
     {
         $path = $absolutePath ? $path : $this->path.$path;
 
@@ -181,7 +181,7 @@ class FileDownloader
             throw new \Exception(sprintf('File could not be loaded in: %s', $path));
         }
 
-        if (substr($path, -1) === '/' || substr($path, -1) === '#') {
+        if (\in_array(substr($path, -1), ['/', '#'])) {
             $path = substr($path, 0, -1);
         }
 

@@ -2,7 +2,7 @@
 
 namespace Nzo\FileDownloaderBundle\Tests;
 
-/*
+/**
  * This file is part of the NzoFileDownloaderBundle package.
  *
  * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>

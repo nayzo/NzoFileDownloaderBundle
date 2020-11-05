@@ -1,7 +1,7 @@
 <?php
 
-/*
- * NzoFileDownloaderExtension file.
+/**
+ * This file is part of the NzoFileDownloaderBundle package.
  *
  * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
  *
