@@ -54,8 +54,13 @@ class FileDownloader
         return $this->downloadFileHandler($path, $newName);
     }
 
-    public function downloadFileFromUrl(string $url, string $fullDistPathWithFileName, ?string $customUser = ''): bool
-    {
+    public function downloadFileFromUrl(
+        string $url,
+        string $fullDistPathWithFileName,
+        array $headers = [],
+        ?string $customUser = ''
+    ): bool {
+
         try {
             $userAgent = trim(
                 sprintf(
@@ -63,8 +68,11 @@ class FileDownloader
                     $customUser
                 )
             );
+
+            $httpHeaders = array_merge([$userAgent], $headers);
+
             $context = stream_context_create(
-                ['http' => ['header' => $userAgent]]
+                ['http' => ['header' => $httpHeaders]]
             );
             $response = file_put_contents($fullDistPathWithFileName, file_get_contents($url, false, $context));
 

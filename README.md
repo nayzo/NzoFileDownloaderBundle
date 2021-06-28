@@ -104,7 +104,9 @@ class MyController extends AbstractController
 ```php
     public function downloadFileFromUrl(string $url, string $pathWhereToDownloadTheFile, ?string $customUserAgent = null)
     {
-        $response =  $this->fileDownloader->downloadFileFromUrl($url, $pathWhereToDownloadTheFile, /** You can pass an optional custom User-Agent as third argument ($customUserAgent) */);
+        $headers = ['Authorization: Basic auth'];
+        
+        $response =  $this->fileDownloader->downloadFileFromUrl($url, $pathWhereToDownloadTheFile, $headers, /** You can pass an optional custom User-Agent as third argument ($customUserAgent) */);
     
         if (false !== $response) {
             // File downloaded successfully !
