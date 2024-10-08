@@ -3,7 +3,7 @@
 /**
  * This file is part of the NzoFileDownloaderBundle package.
  *
- * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
+ * (c) Ala Eddine Khefifi <alakfpro@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -136,7 +136,7 @@ class FileDownloader
         return $streamedResponse;
     }
 
-    private function getFileTypeWithoutDownload(string $url): ?string
+    public function getFileTypeWithoutDownload(string $url): ?string
     {
         $extension = get_headers($url, 1)['Content-Type'];
         if (\is_array($extension)) {
@@ -185,7 +185,7 @@ class FileDownloader
     {
         $path = $absolutePath ? $path : $this->path.$path;
 
-        if (!file_get_contents($path)) {
+        if (!file_exists($path) || !file_get_contents($path)) {
             throw new \Exception(sprintf('File could not be loaded in: %s', $path));
         }
 
